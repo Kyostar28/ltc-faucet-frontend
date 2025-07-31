@@ -140,7 +140,7 @@
 <div class="overlay"></div>
 
 <header>
-  <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.png?v=023" alt="Litecoin Logo" />
+  <img src="https://cdnl.iconscout.com/lottie/premium/thumb/holographic-coin-ltc-5056243-4210959.gif" alt="Litecoin Logo" />
   <h1>Litecoin Faucet</h1>
 </header>
 
@@ -156,6 +156,31 @@
 <footer>
   © 2025 Litecoin Faucet - Powered by FaucetPay
 </footer>
+<script>
+  async function reclamar() {
+    const address = document.getElementById('ltcAddress').value.trim();
+    if (!address) {
+      alert("Por favor, ingresa tu dirección Litecoin.");
+      return;
+    }
+
+    try {
+      const response = await fetch('https://ltc-faucet-backend.onrender.com/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ address })
+      });
+
+      const data = await response.json();
+      alert(data.message || "Respuesta recibida.");
+    } catch (error) {
+      console.error(error);
+      alert("Ocurrió un error al contactar el backend.");
+    }
+  }
+</script>
 
 </body>
 </html>
